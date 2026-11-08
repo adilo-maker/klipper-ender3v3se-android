@@ -6,6 +6,12 @@
 
 > Klipper управляет нагревателями и моторами. Ошибка в конфиге или прошивке может испортить принтер или создать пожарную опасность. Не оставляйте печать без присмотра, пока не проверены термисторы, thermal runaway и концевые выключатели. Все действия — на ваш риск.
 
+## Скриншоты
+
+| Заставка при загрузке | KlipperScreen (русский UI) |
+|---|---|
+| ![Заставка Klipper](screenshots/splash.png) | ![KlipperScreen](screenshots/klipperscreen.png) |
+
 ## Что работает
 
 - Klipper, Moonraker, nginx и USB-мост под runit.
@@ -21,6 +27,9 @@
 .
 ├─ AI-INSTALL-GUIDE.md          # полный self-contained гайд для ИИ и людей (главный файл)
 ├─ README-KIPPER.md             # короткая шпаргалка по уже работающей установке
+├─ screenshots/
+│  ├─ splash.png                # заставка при загрузке
+│  └─ klipperscreen.png         # KlipperScreen, русский UI
 ├─ config/
 │  ├─ printer.cfg               # Ender 3 V3 SE, PTY-мост, BLTouch/CR-Touch, bed mesh 5×5
 │  ├─ moonraker.conf            # provider: none, trusted_clients только LAN
