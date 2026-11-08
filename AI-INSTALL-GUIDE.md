@@ -47,7 +47,7 @@
 
 | Обозначение | Значение |
 |---|---|
-| `PHONE_IP` | IP телефона в Wi-Fi, например `192.168.0.109` |
+| `PHONE_IP` | IP телефона в Wi-Fi, например `192.168.1.100` |
 | `SERIAL` | серийник для ADB из `adb devices -l` |
 | `$HOME` | `/data/data/com.termux/files/home` |
 | `$PREFIX` | `/data/data/com.termux/files/usr` |
@@ -2241,7 +2241,7 @@ CONFIG_HAVE_BOOTLOADER_REQUEST=y
 
 ### J.2. `build.ps1`
 
-Скрипт собирает APK через `aapt2 → javac → d8 → zipalign → apksigner`. Пути `C:\klipper-build\...` — пример; замените на свои. Пароль keystore `klipper123` — локальный демонстрационный, для публикации сгенерируйте свой ключ и пароль.
+Скрипт собирает APK через `aapt2 → javac → d8 → zipalign → apksigner`. Пути `C:\klipper-build\...` — пример; замените на свои. Пароль keystore `change-me` — локальный демонстрационный, для публикации сгенерируйте свой ключ и пароль.
 
 ```powershell
 $ErrorActionPreference = "Continue"
@@ -2318,14 +2318,14 @@ if ($LASTEXITCODE -ne 0) { throw "zipalign failed" }
 if (!(Test-Path $KS)) {
     Write-Host "== keytool (new keystore) =="
     & "$KEYTOOL" -genkeypair -keystore "$KS" -alias klipper -keyalg RSA -keysize 2048 `
-        -validity 10000 -storepass klipper123 -keypass klipper123 `
+        -validity 10000 -storepass change-me -keypass change-me `
         -dname "CN=Klipper Launcher, OU=Klipper, O=Klipper, L=Home, ST=Home, C=RU"
     if ($LASTEXITCODE -ne 0) { throw "keytool failed" }
 }
 
 Write-Host "== apksigner =="
 & "$BT\apksigner.bat" sign --ks "$KS" --ks-key-alias klipper `
-    --ks-pass pass:klipper123 --key-pass pass:klipper123 `
+    --ks-pass pass:change-me --key-pass pass:change-me `
     --out "$OUT" "$BUILD\app-aligned.apk"
 if ($LASTEXITCODE -ne 0) { throw "apksigner failed" }
 
